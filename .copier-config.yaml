@@ -17,5 +17,4 @@ project_description: Hyperfast Book Template is a self-contained template that h
 project_license: MIT
 project_name: hyperfast-book-template
 project_short_description: A jupyter-book template that helps you jump start your project
-version_file: book/.version
-
+version_file: .version
