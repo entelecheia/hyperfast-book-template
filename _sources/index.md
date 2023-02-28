@@ -13,6 +13,7 @@
 [release-url]: https://github.com/entelecheia/hyperfast-book-template/releases
 [conventional-commits-image]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white
 [jupyter-book-image]: https://jupyterbook.org/en/stable/_images/badge.svg
+[jupyter book]: https://jupyterbook.org
 
 [repo-url]: https://github.com/entelecheia/hyperfast-book-template
 [pypi-url]: https://pypi.org/project/hyperfast-book-template
