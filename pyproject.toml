@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "hyperfast-book-template"
-version = "0.1.8"
-description = "A python template that helps you jump start your project"
+version = "0.1.0"
+description = "A jupyter-book template that helps you jump start your project"
 authors = ["Young Joon Lee <entelecheia@hotmail.com>"]
 license = "MIT"
 readme = "README.md"
@@ -20,7 +20,7 @@ exclude = ['_version.py', 'node_modules', '_build', 'docs', 'tests', 'venv', '.c
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "1.0.1"
+version = "0.0.0"
 tag_format = "v$version"
 
 [tool.semantic_release]
@@ -34,8 +34,8 @@ prerelease_tag = "rc"
 major_on_zero = true
 tag_commit = true
 changelog_file = "CHANGELOG.md"
-upload_to_repository = true
-upload_to_release = true
+upload_to_repository = false
+upload_to_release = false
 build_command = false
-dist_path = "{{ dist_path }}"
+dist_path = "dist"
 hvcs = "github" # hosting version control system, gitlab is also supported
