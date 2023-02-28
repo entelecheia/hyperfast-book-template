@@ -25,12 +25,8 @@ help:  ## Display this help
 format-black: ## black (code formatter)
 	@poetry run black .
 
-.PHONY: format-isort
-format-isort: ## isort (import formatter)
-	@poetry run isort .
-
 .PHONY: format
-format: format-black format-isort ## run all formatters
+format: format-black ## run all formatters
 
 ##@ Linting
 
@@ -38,43 +34,7 @@ format: format-black format-isort ## run all formatters
 lint-black: ## black in linting mode
 	@poetry run black --check --diff .
 
-.PHONY: lint-isort
-lint-isort: ## isort in linting mode
-	@poetry run isort --check --diff .
-
-.PHONY: lint-flake8
-lint-flake8: ## flake8 (linter)
-	@poetry run flake8 .
-
-.PHONY: lint-mypy
-lint-mypy: ## mypy (static-type checker)
-	@poetry run mypy --config-file pyproject.toml .
-
-.PHONY: lint-mypy-report
-lint-mypy-report: ## run mypy & create report
-	@poetry run mypy --config-file pyproject.toml . --html-report ./mypy_html
-
-lint: lint-black lint-isort lint-flake8 lint-mypy ## run all linters
-
-##@ Running & Debugging
-
-.PHONY: run
-run: ## run the main script
-	@poetry run hyperfastpy
-
-##@ Testing
-
-.PHONY: tests
-tests: scm-version ## run tests with pytest
-	@poetry run pytest --doctest-modules
-
-.PHONY: tests-cov
-tests-cov: scm-version ## run tests with pytest and show coverage (terminal + html)
-	@poetry run pytest --doctest-modules --cov=src --cov-report term-missing --cov-report=html
-
-.PHONY: scm-version tests-cov-fail
-tests-cov-fail: ## run unit tests with pytest and show coverage (terminal + html) & fail if coverage too low & create files for CI
-	@poetry run pytest --doctest-modules --cov=src --cov-report term-missing --cov-report=html --cov-fail-under=80 --junitxml=pytest.xml | tee pytest-coverage.txt
+lint: lint-black ## run all linters
 
 ##@ Jupyter-Book
 
@@ -92,16 +52,10 @@ book-deploy: ## build & publish documentation to "gh-pages" branch
 
 ##@ Clean-up
 
-clean-cov: ## remove output files from pytest & coverage
-	@rm -rf .coverage
-	@rm -rf htmlcov
-	@rm -rf pytest.xml
-	@rm -rf pytest-coverage.txt
-
 clean-book-build: ## remove output files from mkdocs
 	@rm -rf book/_build
 
-clean: clean-cov clean-book-build ## run all clean commands
+clean: clean-book-build ## run all clean commands
 
 ##@ Releases
 
@@ -128,12 +82,6 @@ prerelease-noop: ## release a pre-release without changing anything
 
 prerelease-ci: ## release a pre-release in CI
 	@poetry run semantic-release publish --prerelease -v DEBUG -D commit_author="github-actions <action@github.com>"
-
-scm-version: ## returns the version from the setuptools_scm
-	@poetry run python -m setuptools_scm
-
-build: ## build the package
-	@poetry build
 
 ##@ Git Branches
 
@@ -176,10 +124,7 @@ install-piptools: install-pipx ## install pip-tools (pre-requisite for install)
 install-prereqs: install-pipx  install-copier install-poetry install-piptools install-precommit ## install all prerequisites
 
 install: ## install the package
-	@poetry install --without dev
-
-install-dev: ## install the package in development mode
-	@poetry install --with dev
+	@poetry install
 
 install-precommit-hooks: install-precommit ## install pre-commit hooks
 	@pre-commit install

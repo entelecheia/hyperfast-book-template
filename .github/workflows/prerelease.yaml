@@ -38,7 +38,7 @@ jobs:
 
       # install copier and init project
       - name: Install copier and init project
-        if: github.repository == 'entelecheia/hyperfast-python-template'
+        if: github.repository == 'entelecheia/hyperfast-book-template'
         run: |
           pipx install copier>=7.0.0
           make reinit-project-force
@@ -52,6 +52,4 @@ jobs:
         uses: relekang/python-semantic-release@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          repository_username: __token__
-          repository_password: ${{ secrets.PYPI_API_TOKEN }}
           additional_options: --prerelease --verbosity=DEBUG --define=branch=${{ env.BRANCH }}

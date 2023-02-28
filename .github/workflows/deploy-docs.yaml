@@ -22,7 +22,7 @@ jobs:
 
       # init project
       - name: Init project
-        if: github.repository == 'entelecheia/hyperfast-python-template'
+        if: github.repository == 'entelecheia/hyperfast-book-template'
         run: |
           pipx install copier>=7.0.0
           make reinit-project-force

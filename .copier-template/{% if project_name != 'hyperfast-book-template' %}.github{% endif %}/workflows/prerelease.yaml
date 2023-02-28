@@ -45,6 +45,4 @@ jobs:
         uses: relekang/python-semantic-release@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          repository_username: __token__
-          repository_password: ${{ secrets.PYPI_API_TOKEN }}
           additional_options: --prerelease --verbosity=DEBUG --define=branch=${{ env.BRANCH }}
