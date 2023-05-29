@@ -9,7 +9,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.8.1"
 python-semantic-release = "^7.34.2"
-jupyter-black = "^0.3.3"
+jupyter-black = "^0.3.4"
 
 [tool.poetry.group.book.dependencies]
 jupyter-book = "^0.13.2"
